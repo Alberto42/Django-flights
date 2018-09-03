@@ -1,0 +1,42 @@
+{% load render_table from django_tables2 %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<div class="container panel">
+    <h3>Lista lotów</h3>
+    <p>Data: <input type="text" id="datepicker"/></p>
+    {% render_table table %}
+</div>
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $("#datepicker").datepicker({
+                onSelect: function (dateText) {
+                    window.location.replace("/home/?date=" + dateText);
+                },
+                dateFormat: "yy-mm-dd"
+            });
+        });
+        $(".clickable-row").click(function () {
+            window.location = '/flights/' + $(this).attr('flight-id');
+        });
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        if (getUrlParameter('date') != undefined)
+            document.getElementById('datepicker').setAttribute('value',getUrlParameter('date'));
+
+    });
+
+</script>

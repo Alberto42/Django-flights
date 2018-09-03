@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'wwwApp/style.css' %}"/>
+    <meta charset="UTF-8">
+    <title>Przeloty samolotów pasażerskich</title>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<header>
+    {% block header %}
+    {% endblock %}
+</header>
+{% block contents %}
+{% endblock %}
+</body>
+</html>

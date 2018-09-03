@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/static/wwwApp/style.css"/>
+    <link rel="stylesheet" href="/static/wwwApp/style_clickable_row.css"/>
+    <meta charset="UTF-8">
+    <title>Zarządzanie załogami</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/static/wwwApp/bundle.js"></script>
+{#    <script src="/static/wwwApp/script.js"></script>#}
+</head>
+<body>
+<header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>Przeloty samolotów pasażerskich
+                <small>Zarządzanie załogami</small>
+            </h1>
+        </div>
+        <div class="page-subtitle">
+            <a href="/home">Wstecz</a>
+        </div>
+    </div>
+
+</header>
+
+<div class="container">
+    <div class="row panel properties">
+        <div class="col-sm-3">
+            <p>Data: <input type="text" id="datepicker"/></p>
+        </div>
+        <div class="col-sm-2">
+            <button id = "add_relation"type="button" class="btn btn-default" onclick="add_relation()" disabled>Przypisz załogę</button>
+        </div>
+        <div class="col-sm-2">
+            <button id="remove_crew" type="button" class="btn btn-danger" onclick="remove_crew()" disabled>Usuń załogę
+            </button>
+        </div>
+        <div class="col-sm-2">
+            <button id="synchronize" type="button" class="btn btn-basic" onclick="synchronize()">Synchronizuj</button>
+        </div>
+    </div>
+    <div style="min-height: 55px">
+        <div id="alert" style="display: block">
+        </div>
+    </div>
+{#    <script>#}
+{#        $("#alert").hide();#}
+{#    </script>#}
+    <div class="row">
+        <p>Aby przypisać załogę do lotu, wybierz lot oraz załogę a następnie kliknij <strong>Przypisz załogę</strong></p>
+        <div class="air_crew_flights">
+            <div class="table-container panel scrollable_table">
+                <table class="table table-hover table-condensed table-responsive">
+
+
+                    <thead>
+                    <tr>
+                        <th>Lotnisko startowe</th>
+                        <th>Czas Odlotu</th>
+                        <th>Lotnisko docelowe</th>
+                        <th>Czas Dotarcia</th>
+                        <th>Załoga</th>
+                    </tr>
+                    </thead>
+                    <tbody id="flight_table_body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="crews">
+            <div class="table-container panel scrollable_table">
+
+                <table class="table table-hover table-condensed table-responsive">
+
+
+                    <thead>
+                    <tr>
+                        <th>Kapitan</th>
+                    </tr>
+                    </thead>
+                    <tbody id="crew_table_body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

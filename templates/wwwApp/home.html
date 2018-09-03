@@ -1,0 +1,26 @@
+{% extends 'wwwApp/base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/wwwApp/style_clickable_row.css"/>
+{% endblock %}
+{% block header %}
+    <div class="container">
+        <h1>Przeloty samolotów pasażerskich
+            <small>Strona główna</small>
+        </h1>
+    </div>
+{% endblock %}
+
+{% block contents %}
+
+    {% include 'wwwApp/login.html' %}
+    <div class="container panel">
+        {% if user == "AnonymousUser" %}
+                <h4>Zaloguj się, żeby móc zarządzać załogami</h4>
+        {% else %}
+           <h4> <a id="air_crew" href="/air_crew">Zarządzanie załogami</a></h4>
+        {% endif %}
+    </div>
+    {% include 'wwwApp/flights.html' %}
+
+{% endblock %}

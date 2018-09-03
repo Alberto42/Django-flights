@@ -1,0 +1,44 @@
+.bordered {
+    border: 1px solid;
+}
+
+.not-empty {
+    min-height: 60px;
+}
+
+body {
+    background-color: lightyellow !important;
+}
+
+.panel {
+    background-color: #a944421f !important;
+    padding-bottom: 10px;
+}
+
+.properties {
+    padding-top: 7px;
+}
+
+.page-title {
+    width: 90%;
+    display: inline-block;
+}
+
+.page-subtitle {
+    width: 9%;
+    display: inline-block;
+    text-align: right;
+}
+.scrollable_table {
+    overflow-y: scroll;
+    height: 600px;
+}
+.air_crew_flights {
+    width: 84%;
+    display: inline-block
+}
+.crews {
+    width: 15%;
+    display: inline-block;
+    float: right
+}

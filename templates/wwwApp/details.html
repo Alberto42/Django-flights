@@ -1,0 +1,82 @@
+{% extends 'wwwApp/base.html' %}
+
+{% block header %}
+    <div class="container">
+        <div class="page-title">
+            <h1>Przeloty samolotów pasażerskich
+                <small>Szczegóły lotu</small>
+            </h1>
+        </div>
+        <div class="page-subtitle">
+            <a href="/home">Wstecz</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block contents %}
+    {% include 'wwwApp/login.html' %}
+
+    <div class="container panel properties">
+        <div class="row properties">
+            <div class="col-sm-6 ">
+                <div class="col-sm-4">Lotnisko startowe:</div>
+                <div class="col-sm-8 well well-sm">{{ flight.starting_airport.name }}</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4">Lotnisko docelowe:</div>
+                <div class="col-sm-8 well well-sm">{{ flight.destination_airport.name }}</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4">Czas odlotu:</div>
+                <div class="col-sm-8 well well-sm">{{ flight.starting_time }}</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4">Czas dotarcia:</div>
+                <div class="col-sm-8 well well-sm">{{ flight.destination_time }}</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4">Samolot:</div>
+                <div class="col-sm-8 well well-sm">{{ flight.plane.name }}</div>
+            </div>
+            <div class="col-sm-6 not-empty"></div>
+
+            <div class="col-sm-4">
+                <div class="col-sm-6">Wolne miejsca:</div>
+                <div class="col-sm-6">{{ free_seats }}</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="col-sm-6">Zajete miejsca:</div>
+                <div class="col-sm-6">{{ taken_seats }}</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="col-sm-6">Wszystkie miejsca:</div>
+                <div class="col-sm-6">{{ flight.plane.passengers_limit }}</div>
+            </div>
+        </div>
+        <div class="row"></div>
+    </div>
+    <div class="container panel">
+        <h3>Kup bilet:</h3>
+        {% if user == "AnonymousUser" %}
+            <h4>Zaloguj się, żeby móc kupować bilety</h4>
+        {% elif free_seats == 0 %}
+            <h4>Nie ma już wolnych miejsc</h4>
+        {% else %}
+            <form method="post" action="/buy_ticket">
+                {% csrf_token %}
+                <input type="hidden" value="{{ flight.id }}" name="id"/>
+                Imię:
+                <input id="name" type="text" name="name"/>
+                Nazwisko:
+                <input id="surname" type="text" name="surname"/>
+                <button id="buy" type="submit">Kup</button>
+            </form>
+        {% endif %}
+    </div>
+    {% load render_table from django_tables2 %}
+    <div class="container panel">
+        <h3>Lista pasażerów:</h3>
+        {% render_table table %}
+    </div>
+{% endblock %}

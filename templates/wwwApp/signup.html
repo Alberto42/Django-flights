@@ -1,0 +1,38 @@
+{% extends 'wwwApp/base.html' %}
+
+{% block header %}
+    <div class="container">
+        <div class="page-title">
+            <h1>Przeloty samolotów pasażerskich
+                <small>Rejestracja</small>
+            </h1>
+        </div>
+        <div class="page-subtitle">
+            <a href="/home">Wstecz</a>
+        </div>
+    </div>
+{% endblock %}
+{% block contents %}
+    <div class="container panel">
+        <h2>Rejestracja</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <p>
+                    {% if field.label_tag != '<label for="id_username">Username:</label>'  %}
+                        {{ field.label_tag }}
+                    {% else %}
+                        <label for="id_username">Użytkownik:</label>
+                    {% endif %}
+                    <br/>
+                    {{ field }}
+
+                    {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                </p>
+            {% endfor %}
+            <button id="signup" type="submit">Zarejestruj się</button>
+        </form>
+    </div>
+{% endblock %}

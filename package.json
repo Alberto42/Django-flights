@@ -1,0 +1,21 @@
+{
+  "name": "WWW-2-zadanie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./build.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alberto42/www2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alberto42/www2/issues"
+  },
+  "homepage": "https://github.com/Alberto42/www2#readme"
+}

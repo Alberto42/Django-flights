@@ -1,0 +1,36 @@
+{% block content %}
+    <div class="container panel">
+        {% if user == "AnonymousUser" %}
+            <h4>Zaloguj się</h4>
+            {% if form.errors %}
+                <p style="color: red">Twoja nazwa użytkownika i hasło nie pasują. Spróbuj jeszcze raz. </p>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <input id="redirect_field" type="hidden" name="home" value="/home"/>
+                {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}<br>
+                        {{ field }}<br>
+                        {% for error in field.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    {% if field.help_text %}
+                        <p>
+                            <small style="color: grey">{{ field.help_text }}</small>
+                        </p>
+                    {% endif %}
+                    </p>
+                {% endfor %}
+                <button type="submit">Zaloguj</button>
+                <a id="signup" href="{% url 'signup' %}">Jesteś nowy ? Zarejestruj się! </a>
+            </form>
+        {% else %}
+            <h4>Jesteś zalogowany jako {{ user }}
+                <a href="/logout"> wyloguj się</a></h4>
+        {% endif %}
+    </div>
+{% endblock %}
+<script>
+    document.getElementById("redirect_field").setAttribute("value", window.location.href);
+</script>
