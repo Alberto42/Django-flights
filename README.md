@@ -17,3 +17,4 @@ The following(not obvious :D) technologies were used in the project:
   * RESTful web services
   * Typescript
   * Selenium Web automated tests
+  * SQLite
